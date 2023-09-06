@@ -4,8 +4,6 @@
 data segment
     ; add your data here!
     pkey db "press any key..."
-    mensaje db "este es un nuevo CICLO",13,10,"$"
-    espacio db " ",13,10,"$"
 ends
 
 stack segment
@@ -30,20 +28,23 @@ start:
     mov al, 0   ; a
     mov bh, 1     ; b
     mov bl, 0     ; c    
-    add al, 65
+    
     
    ciclo: 
-     
+   add al, 65  
    mov ah, 2      
    mov dh, 0
    mov dl, al
    int 21h 
-  
- 
+   sub al, 65
+   
+   mov bl, al
+   mov al, 32  
    mov ah, 2      
    mov dh, 0
-   mov dl, 32
-   int 21h       ; output string at ds:dx
+   mov dl, al
+   int 21h 
+   mov al, bl
    
    mov bl, al
    add bl, bh
