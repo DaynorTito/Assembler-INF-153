@@ -18,14 +18,25 @@ start:
     mov es, ax
 
     ; add your code here 
+    ; simulacion de instruccion ciclica
     mov cx, 5
   ciclo:
-              
+    ; las instrucciones
     lea dx, mensaje
     mov ah, 9
     int 21h        ; output string at ds:dx
     loop ciclo
-      
+
+    ;incrementos
+    add BX, valor
+    add AL, 3
+    add BL, 302 no se le puede adiconar mas de 255
+
+    ; decrementos
+    sub Dx, valor
+    sub AL, 5
+        ; no se pueden manejar datos negativos, se deben combinar 3 regsitros para manejar 
+
     ; wait for any key....    
     mov ah, 1
     int 21h
