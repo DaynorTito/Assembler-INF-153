@@ -20,25 +20,31 @@ start:
     mov es, ax
     
 
-    ; add your code here 
-     
+    ; add your code here
+    
     mov al, 1
     int 21h
-     
-    mov cl, al
-    
-    
+    sub al, 30h
+    mov cx, ax
+    mov ch, 0
     mov al, 0   ; a
     mov bh, 1     ; b
     mov bl, 0     ; c    
+    add al, 65
     
-   ciclo:
-   add al, 65
+   ciclo: 
+     
    mov ah, 2      
    mov dh, 0
    mov dl, al
-   int 21h        ; output string at ds:dx
-   sub al, 65
+   int 21h 
+  
+ 
+   mov ah, 2      
+   mov dh, 0
+   mov dl, 32
+   int 21h       ; output string at ds:dx
+   
    mov bl, al
    add bl, bh
    mov al, bh
