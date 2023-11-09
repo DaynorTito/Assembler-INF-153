@@ -71,13 +71,22 @@ start:
     mov cl, [si]
     mov bx, cx
     mov [si], 0
-    
+   
     copiar:
+    mov bl, [si]
     pop ax
     mov [si], al
     inc si
     loop copiar
-    
+    limpiar:
+    mov [si], 0
+    inc si
+    inc si
+    cmp [si], "$"
+    jz salir
+    dec si
+    jmp limpiar
+    salir:
 
     lea dx, enter
     mov ah, 9
@@ -88,7 +97,8 @@ start:
     mov cx, 0
     mov dx, 0
     
-     lea si, v
+     
+    lea si, v
     cicloo:
     
     mov di, si 
@@ -114,11 +124,12 @@ start:
     jz finordenamiento
     dec si
     jmp cicloo
-    finordenamiento:
+    finordenamiento: 
     mov cx, 0
     mov bx, 0
     mov ax, 0
     mov dx, 0
+    
     lea si, v
     mostrar:
     
@@ -155,7 +166,6 @@ start:
     cmp [si], "$"
     jz fin
     jmp mostrar
-    
     fin:      
             
     mov ax, 4c00h ; exit to operating system.
