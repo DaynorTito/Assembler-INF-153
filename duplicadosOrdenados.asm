@@ -3,11 +3,12 @@
 data segment
     ; add your data here!
     pkey db "press any key...$"
-    
+    vc db 0, 0, 0
     v db 0, 0, 0, 0, 0, 0, 0, 0, 0
     vf db "$" 
     vec db 0 dup(100)
     enter db 10, 13, 36
+    num db 0
     
 ends
 
@@ -31,7 +32,7 @@ start:
     jz leer
     push bx
     mov [si], 1
-    mov si, offset v
+    mov si, offset num
     inc [si]
     leer:
     mov ax, 0
@@ -62,18 +63,18 @@ start:
     jz siguiente
     mov [si], 1    
     push bx
-    mov si, offset v
+    mov si, offset num
     inc [si]
     siguiente:
-    mov si, offset v
+    mov si, offset num
     mov ax, 0
     mov cx, 0
     mov cl, [si]
     mov bx, cx
     mov [si], 0
-   
+    
+    mov si, offset v
     copiar:
-    mov bl, [si]
     pop ax
     mov [si], al
     inc si
@@ -81,10 +82,8 @@ start:
     limpiar:
     mov [si], 0
     inc si
-    inc si
     cmp [si], "$"
     jz salir
-    dec si
     jmp limpiar
     salir:
 
@@ -125,6 +124,10 @@ start:
     dec si
     jmp cicloo
     finordenamiento: 
+     
+     
+     
+     
     mov cx, 0
     mov bx, 0
     mov ax, 0
